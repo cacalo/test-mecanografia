@@ -1,0 +1,150 @@
+:root{
+	--font-size: 100px;
+	--border-radius: 20px;
+	--background-objetos: rgba(0, 0, 0, 0.38);
+}
+
+body{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	margin: 0;
+	background: linear-gradient(45deg, rgba(230,228,198,1) 4%, rgba(137,191,156,1) 62%, rgba(29,141,125,1) 100%);
+}
+
+p,b,span{
+	font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+*{
+	user-select: none;
+}
+
+button{
+	cursor: pointer;
+}
+
+input{
+	position: absolute;
+	opacity: 0%;
+}
+
+#barraProgreso{
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	height: 10px;
+	background-color: rgba(111, 255, 0, 0.141);
+}
+
+#barraProgreso div{
+	position: absolute;
+	height: 100%;
+	top: 0;
+	background-color: rgba(255, 0, 0, 0.344);
+} 
+
+
+button{
+	font-size: var(--font-size);
+	padding: 50px;
+	border: unset;
+	border-radius: var(--border-radius);
+	color: rgb(241, 255, 240);
+	background-color: var(--background-objetos);
+}
+
+#palabraActual{
+	font-size: var(--font-size);
+}
+
+
+
+#palabraAnterior{
+	position: absolute;
+	top: calc(50% - 150px);
+	font-size: var(--font-size);
+}
+
+#correctas span{
+	color: rgb(217, 255, 217);
+}
+
+#incorrectas span{
+	color: rgb(255, 217, 217);
+}
+
+.data{
+	color: white;
+	padding: 20px;
+	background-color: var(--background-objetos);
+	border-radius: var(--border-radius);
+}
+
+.escondido{
+	display: none;
+}
+
+.invisible{
+	opacity: 0%;
+}
+
+.aparecer{
+	animation: aparecer;
+	animation-duration: 500ms;
+	animation-timing-function: ease-in-out;
+	animation-fill-mode: forwards;
+}
+
+.desaparecer{
+	position: absolute;
+	font-size: var(--font-size);
+	top: var(--top);
+	left: var(--left);
+	animation-duration: 500ms;
+	animation-name: desaparecer;
+	animation-timing-function: ease-in-out;
+}
+
+.completarTiempo{
+	animation-duration: var(--tiempo);
+	animation-name: completarBarra;
+	animation-fill-mode: forwards;
+	animation-timing-function: linear;
+}
+
+
+@keyframes aparecer {
+	0%{
+		opacity: 0%;
+	}
+	100%{
+		opacity: 100%;
+	}
+}
+
+@keyframes desaparecer{
+	0%{
+
+	}
+	50%{
+		color: green;
+	}
+	100%{
+		transform: translateY(-100%);
+		opacity: 0%;
+		font-size: calc( var(--font-size) / 2 );
+	}
+}
+
+@keyframes completarBarra{
+	0%{
+		width: 0%;
+	}
+	100%{
+		width: 100%;
+	}
+}
+
