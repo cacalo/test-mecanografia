@@ -50,6 +50,7 @@ function empezar(){
 	nuevaPalabra();
 	barraProgreso.classList.toggle("completarTiempo",true);
 	finalContainer.classList.toggle("escondido",true);
+	listaLetras[0].classList.add("letraActual")
 }
 
 function terminar(){
@@ -111,6 +112,7 @@ input.addEventListener("input",(event)=>{
 			nuevaPalabra()
 			palabrasTerminadas++;
 		};
+		listaLetras[indiceActual].classList.add("letraActual")
 	}
 	else{
 		letrasIncorrectas++

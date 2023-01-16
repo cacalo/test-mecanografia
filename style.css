@@ -14,7 +14,7 @@ body{
 	background: linear-gradient(45deg, rgba(230,228,198,1) 4%, rgba(137,191,156,1) 62%, rgba(29,141,125,1) 100%);
 }
 
-p,b,span{
+p,b,span, footer{
 	font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
@@ -43,7 +43,7 @@ input{
 	position: absolute;
 	height: 100%;
 	top: 0;
-	background-color: rgba(255, 0, 0, 0.344);
+	background-color: rgb(205, 156, 156);
 } 
 
 button{
@@ -57,6 +57,10 @@ button{
 
 #palabraActual{
 	font-size: var(--font-size);
+}
+
+.letraActual{
+	color: rgb(246, 63, 112);
 }
 
 .data{
@@ -106,6 +110,14 @@ button{
 	animation-timing-function: linear;
 }
 
+footer{
+	margin-top: 20px;
+	text-align: center;
+}
+footer a:visited{
+	color: unset;
+}
+
 
 @keyframes aparecer {
 	0%{
@@ -121,7 +133,7 @@ button{
 
 	}
 	50%{
-		color: green;
+		color: rgb(69, 91, 136);
 	}
 	100%{
 		transform: translateY(-100%);
