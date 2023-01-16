@@ -16,7 +16,7 @@ const empezarBoton = document.getElementById("empezar");
 const barraProgreso = document.querySelector("#barraProgreso div");
 const finalContainer = document.getElementById("final");
 let jugando = false;
-const tiempoJuego = 10;
+const tiempoJuego = 60;
 
 document.documentElement.style.setProperty("--tiempo",tiempoJuego+'s');
 
