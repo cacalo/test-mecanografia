@@ -1,25 +1,27 @@
+//Referencias a elementos
 const palabras = palabrasArray;
 const palabraContainer = document.getElementById("palabraActual");
 const palabraAnteriorContainer = document.getElementById("palabraAnterior");
 const input = document.querySelector("input");
-let listaLetras;
-let indiceActual = 0;
-const delayBase = 100;
-let letrasCorrectas;
-let letrasIncorrectas;
-let palabrasTerminadas;
-let ppm;
 const correctasElement = document.querySelector("#correctas span");
 const incorrectasElement = document.querySelector("#incorrectas span");
 const ppmElement = document.querySelector("#ppm span");
 const empezarBoton = document.getElementById("empezar");
 const barraProgreso = document.querySelector("#barraProgreso div");
 const finalContainer = document.getElementById("final");
+
+//Otras variables
+let listaLetras;
+let indiceActual = 0;
+let letrasCorrectas;
+let letrasIncorrectas;
+let palabrasTerminadas;
+let ppm;
 let jugando = false;
 const tiempoJuego = 60;
-
 document.documentElement.style.setProperty("--tiempo",tiempoJuego+'s');
 
+//Funciones
 function nuevaPalabra(){
 	indiceActual = 0;
 	const	nPalabraElegida = Math.floor(Math.random()*(palabras.length-1));
@@ -29,10 +31,8 @@ function nuevaPalabra(){
 	borrarHijos(palabraContainer)
 	listaLetras = [];
 	for (let i = 0; i < palabraElegida.length; i++) {
-		const letra = palabraElegida[i];
 		const letraElement = document.createElement("span");
-		letraElement.textContent = letra;
-		letraElement.style = `animation-delay: ${i*100}+ms`
+		letraElement.textContent = palabraElegida[i];
 		letraElement.classList.add("aparecer");
 		palabraContainer.appendChild(letraElement);
 		listaLetras.push(letraElement);
@@ -42,31 +42,10 @@ function nuevaPalabra(){
 	}
 }
 
-
-function reset(){
-	letrasCorrectas = 0;
-	letrasIncorrectas = 0;
-	ppm = 0;
-	palabrasTerminadas = 0;
-	correctasElement.textContent = letrasCorrectas;
-	incorrectasElement.textContent = letrasIncorrectas;
-}
-
-
-
-input.focus();
-input.addEventListener("blur",()=> input.focus())
-
-
-function borrarHijos(element){
-	Array.from(element.children).forEach(child => element.removeChild(child))
-}
-
 function empezar(){
 	jugando = true;
 	empezarBoton.classList.toggle("escondido",true);
 	palabraContainer.classList.toggle("escondido",false);
-
 	reset();
 	nuevaPalabra();
 	barraProgreso.classList.toggle("completarTiempo",true);
@@ -81,11 +60,43 @@ function terminar(){
 	ppmElement.textContent = ppm;
 }
 
+function reset(){
+	letrasCorrectas = 0;
+	letrasIncorrectas = 0;
+	ppm = 0;
+	palabrasTerminadas = 0;
+	correctasElement.textContent = letrasCorrectas;
+	incorrectasElement.textContent = letrasIncorrectas;
+}
 
+function borrarHijos(element){
+	Array.from(element.children).forEach(child => element.removeChild(child))
+}
+
+function crearLetraEfecto(element){
+	const letra = element.textContent;
+	const posicionLetra = element.getBoundingClientRect();
+	element.classList.add("invisible");
+	const nuevaLetra = document.createElement("span");
+	nuevaLetra.textContent=letra;
+	nuevaLetra.style = `
+		--top: ${posicionLetra.top}px;
+		--left: ${posicionLetra.left}px;
+	`
+	nuevaLetra.classList.add("desaparecer");
+	document.body.appendChild(nuevaLetra);
+	nuevaLetra.addEventListener("animationend", ()=>{
+		document.body.removeChild(nuevaLetra);
+	})
+}
+
+// Eventos
+barraProgreso.addEventListener("animationend", ()=>{
+	terminar();
+})
 document.getElementById("empezar").addEventListener("click", ()=> empezar());
-
-const inputHandler = (event) => {
-	// console.log(event)
+input.addEventListener("input",(event)=>{
+	//console.log(event)
 	if(!jugando){
 		if(event.data === " ") empezar();
 		return;
@@ -105,34 +116,8 @@ const inputHandler = (event) => {
 		letrasIncorrectas++
 		incorrectasElement.textContent = letrasIncorrectas;
 	}
-}
+});
+input.addEventListener("blur",()=> input.focus())
 
-const inputEventPausado = (event) => {
-	
-}
-
-
-function crearLetraEfecto(element){
-	const letra = element.textContent;
-	const posicionLetra = element.getBoundingClientRect();
-	//element.classList.add("escrita");
-	element.classList.add("invisible");
-	const nuevaLetra = document.createElement("span");
-	nuevaLetra.textContent=letra;
-	nuevaLetra.style = `
-		--top: ${posicionLetra.top}px;
-		--left: ${posicionLetra.left}px;
-	`
-	nuevaLetra.classList.add("desaparecer");
-	document.body.appendChild(nuevaLetra);
-	nuevaLetra.addEventListener("animationend", ()=>{
-		document.body.removeChild(nuevaLetra);
-	})
-}
-
-barraProgreso.addEventListener("animationend", ()=>{
-	terminar();
-})
-
-input.addEventListener("input",inputHandler);
-  
+//Ejecución
+input.focus();
