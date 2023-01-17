@@ -57,6 +57,7 @@ function terminar(){
 	jugando = false;
 	palabraContainer.classList.toggle("escondido",true);
 	finalContainer.classList.toggle("escondido",false);
+	barraProgreso.classList.toggle("completarTiempo",false);
 	ppm = palabrasTerminadas*(60/tiempoJuego);
 	ppmElement.textContent = ppm;
 }
