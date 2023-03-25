@@ -1,81 +1,22 @@
 :root{
-	--font-size: 100px;
 	--border-radius: 20px;
 	--background-objetos: rgba(0, 0, 0, 0.38);
+	--color: white;
+	--font-size: 100px;
 }
 
 body{
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	min-height: 100vh;
 	margin: 0;
 	background: linear-gradient(45deg, rgba(230,228,198,1) 4%, rgba(137,191,156,1) 62%, rgba(29,141,125,1) 100%);
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 p,b,span, footer{
 	font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
-}
-
-*{
-	user-select: none;
-}
-
-button{
-	cursor: pointer;
-}
-
-input{
-	position: absolute;
-	opacity: 0%;
-}
-
-#barraProgreso{
-	position: absolute;
-	top: 0px;
-	width: 100%;
-	height: 10px;
-	background-color: rgba(111, 255, 0, 0.141);
-}
-
-#barraProgreso div{
-	position: absolute;
-	height: 100%;
-	top: 0;
-	background-color: rgb(205, 156, 156);
-} 
-
-button{
-	font-size: var(--font-size);
-	padding: 50px;
-	border: unset;
-	border-radius: var(--border-radius);
-	color: rgb(241, 255, 240);
-	background-color: var(--background-objetos);
-}
-
-#palabraActual{
-	font-size: var(--font-size);
-}
-
-.letraActual{
-	color: rgb(246, 63, 112);
-}
-
-.data{
-	color: white;
-	padding: 20px;
-	background-color: var(--background-objetos);
-	border-radius: var(--border-radius);
-}
-
-#correctas span{
-	color: rgb(217, 255, 217);
-}
-
-#incorrectas span{
-	color: rgb(255, 217, 217);
 }
 
 .escondido{
@@ -86,51 +27,86 @@ button{
 	opacity: 0%;
 }
 
-.aparecer{
-	animation: aparecer;
-	animation-duration: 500ms;
-	animation-timing-function: ease-in-out;
-	animation-fill-mode: forwards;
+input{
+	position: absolute;
+	top: -100000px;
 }
 
-.desaparecer{
-	position: absolute;
+#palabraActual{
 	font-size: var(--font-size);
-	top: var(--top);
-	left: var(--left);
-	animation-duration: 500ms;
-	animation-name: desaparecer;
-	animation-timing-function: ease-in-out;
+}
+#correctas span{
+	color: aquamarine;
+}
+
+#incorrectas span{
+	color: rgb(246, 63, 112);
+}
+
+.letraActual{
+	color: rgb(246, 63, 112);
+}
+
+#barraProgreso{
+	position: absolute;
+	top: 0px;
+	height: 10px;
+	width: 100%;
+	background-color: rgb(205, 156, 156);;
+}
+
+#barraProgreso div{
+	height: 10px;
+	background-color: rgba(111, 255, 0, 0.141);;
+}
+
+
+#final p{
+	background-color: var(--background-objetos);
+	color: var(--color);
+	padding: 20px;
+	border-radius: var(--border-radius);
+}
+
+button{
+	padding: 50px;
+	border: unset;
+	border-radius: var(--border-radius);
+	background-color: var(--background-objetos);
+	color: var(--color);
+	font-size: var(--font-size);
 }
 
 .completarTiempo{
-	animation-duration: var(--tiempo);
 	animation-name: completarBarra;
+	animation-duration: var(--tiempo);
 	animation-fill-mode: forwards;
 	animation-timing-function: linear;
 }
 
-footer{
-	margin-top: 20px;
-	text-align: center;
-}
-footer a:visited{
-	color: unset;
+.desaparecer{
+	font-size: var(--font-size);
+	position: absolute;
+	animation-name: desparecer;
+	animation-duration: 500ms;
+	animation-fill-mode: forwards;
+	animation-timing-function: ease-in-out;
 }
 
 
-@keyframes aparecer {
+@keyframes completarBarra {
 	0%{
-		opacity: 0%;
+		width: 0%;
 	}
 	100%{
-		opacity: 100%;
+		width: 100%;
 	}
+	
 }
 
-@keyframes desaparecer{
+@keyframes desparecer {
 	0%{
-
+		
 	}
 	50%{
 		color: rgb(69, 91, 136);
@@ -140,14 +116,5 @@ footer a:visited{
 		opacity: 0%;
 		font-size: calc( var(--font-size) / 2 );
 	}
+	
 }
-
-@keyframes completarBarra{
-	0%{
-		width: 0%;
-	}
-	100%{
-		width: 100%;
-	}
-}
-

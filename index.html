@@ -5,26 +5,25 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="style.css">
-	<script src="index.js" type="module" defer></script>
 	<script src="palabrasArray.js"></script>
+	<script src="index.js" defer></script>
 	<title>Test de mecanografía</title>
 </head>
 <body>
-	<input type="text">
 	<div id="barraProgreso">
 		<div></div>
 	</div>
-	<div id="palabraActual"></div>
+	<input type="text">
 	<button id="empezar">Empezar</button>
+	<div id="palabraActual"></div>
 	<div class="escondido" id="final">
-		<p class="data" id="correctas">Letras correctas: <span >0</span></p>
-		<p class="data" id="incorrectas">Errores: <span>0</span></p>
-		<p class="data" id="ppm" name="Palabras por minuto">PPM: <span>0</span></p>
+		<p id="correctas">Letras correctas: <span>0</span></p>
+		<p id="incorrectas">Errores: <span>0</span></p>
+		<p id="ppm">PPM: <span>0</span></p>
 		<button>Reiniciar</button>
-		<!-- Footer -->
-		<footer class="data">
+		<footer>
 			<p>Hecho con amor por Calo de <a href="https://www.youtube.com/channel/UCWDxiTN0CBZzVwvHFQUk92w" target="_blank">puntoJson</a></p>
-			<p>¿Querés saber cómo lo hice? <a href="https://youtu.be/se9_zvQvNUM" target="_blank">Mirá el video acá</a></p>
+			<p>¿Querés saber cómo lo hice? <a href="#" target="_blank">Mirá el video acá</a></p>
 		</footer>
 	</div>
 </body>
